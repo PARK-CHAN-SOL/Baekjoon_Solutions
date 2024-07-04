@@ -1,10 +1,8 @@
-import java.util.*;
-
 public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
+    public static void main(String[] args) throws Exception{
+        int a = System.in.read() & 15;
+        System.in.read();
+        int b = System.in.read() & 15;
         System.out.print((double)a/b);
     }
 }
