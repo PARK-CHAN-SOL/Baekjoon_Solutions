@@ -15,7 +15,7 @@ class Main {
         StringBuilder sb = new StringBuilder();
         int n = readPosInt();
         int m = readPosInt();
-        Map<String, Integer> hm = new HashMap<String, Integer>();
+        Map<String, Integer> hm = new HashMap<String, Integer>(n);
         String[] names = new String[n+1];
         
         for(int i = 1; i <= n; i++){
