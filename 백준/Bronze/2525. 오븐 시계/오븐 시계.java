@@ -1,12 +1,14 @@
-import java.util.Scanner;
-
 public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
+    static int readPosInt() throws Exception {
+        int c, n = System.in.read() & 15;
+        while((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        return n;
+    }
+    public static void main(String[] args) throws Exception {
         
-        int h = sc.nextInt();
-        int m = sc.nextInt();
-        int o = Integer.parseInt(sc.next());
+        int h = readPosInt();
+        int m = readPosInt();
+        int o = readPosInt();
         
         m = m + o;
         
@@ -20,6 +22,5 @@ public class Main{
         
         System.out.print(h + " " + m);
         
-        sc.close();
     }
 }
