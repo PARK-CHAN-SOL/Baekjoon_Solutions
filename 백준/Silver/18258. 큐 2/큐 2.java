@@ -24,7 +24,10 @@ class Main {
         int popPointer = 0;
         
         for(int i = 0; i < n; i++){
-            
+            if(i % 1000 == 0){
+                System.out.print(sb);
+                sb = new StringBuilder();
+            }
             switch (readWord()) {
                 case 104:
                     que[pushPointer++] = readPosInt();
