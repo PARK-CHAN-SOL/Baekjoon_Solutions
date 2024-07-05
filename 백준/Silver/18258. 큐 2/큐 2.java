@@ -11,40 +11,42 @@ class Main {
     }
 
     static int readWord() throws Exception {
-        int c;
-        int[] n = new int[5];
-        int i = 0;
-        for(; (c = System.in.read()) > 32; i++){
-            n[i] = c;
-        }
-        return n[i-1];
+        int c, n = System.in.read();
+        while((c = System.in.read()) > 32) n = c;
+        return n;
     }
     
     public static void main(String[] args) throws Exception {
-        int n = readPosInt();
-        Deque<Integer> que = new ArrayDeque<Integer>();
         StringBuilder sb = new StringBuilder();
+        int n = readPosInt();
+        int[] que = new int[n];
+        int pushPointer = 0;
+        int popPointer = 0;
         
         for(int i = 0; i < n; i++){
             
             switch (readWord()) {
                 case 104:
-                    que.push(readPosInt());
+                    que[pushPointer++] = readPosInt();
                     break;
                 case 112:
-                    sb.append(que.isEmpty()?-1:que.removeLast()).append("\n");
+                    if(pushPointer==popPointer)sb.append(-1).append("\n");
+                    else sb.append(que[popPointer++]).append("\n");
                     break;
                 case 101:
-                    sb.append(que.size()).append("\n");
+                    sb.append(pushPointer-popPointer).append("\n");
                     break;
                 case 121:
-                    sb.append(que.isEmpty()?1:0).append("\n");
+                    if(pushPointer==popPointer)sb.append(1).append("\n");
+                    else sb.append(0).append("\n");
                     break;
                 case 116:
-                    sb.append(que.isEmpty()?-1:que.getLast()).append("\n");
+                    if(pushPointer==popPointer)sb.append(-1).append("\n");
+                    else sb.append(que[popPointer]).append("\n");
                     break;
                 case 107:
-                    sb.append(que.isEmpty()?-1:que.getFirst()).append("\n");
+                    if(pushPointer==popPointer)sb.append(-1).append("\n");
+                    else sb.append(que[pushPointer-1]).append("\n");
                     break;
             }
             
