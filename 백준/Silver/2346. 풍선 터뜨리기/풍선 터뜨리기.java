@@ -14,42 +14,33 @@ class Main {
     }
     
     public static void main(String[] args) throws Exception {
+        LinkedList<Integer> list = new LinkedList<>();
+        LinkedList<Integer> idxList = new LinkedList<>();
         StringBuilder sb = new StringBuilder();
+        
         int n = readInt();
         
-        int[] list = new int[n];
-        boolean[] flags = new boolean[n];
-        
         int next = 0;
-        int tmp = 0;
-        
-        for(int i = 0; i < n; i++){
-            list[i] = readInt();
+
+        for(int i = 1; i <= n; i++){
+            idxList.add(i);
+            list.add(readInt());
         }
 
-        for(int i = 0; i < n-1; i++){
-            flags[next] = true;
-            tmp = list[next];
-            sb.append(next+1).append(" ");
-            
-            if(tmp > 0) {
-                for(int j = 0; j < tmp; j++){
-                    next = (next + 1 + n) % n;
-                    while(flags[next]) next = (next + 1) % n;
-                }
-                
+        for(int i = 1 ; i < n; i++){
+            sb.append(idxList.remove(next)).append(" ");
+            int listTmp = list.remove(next);
+
+            if(listTmp > 0){
+                next = (next + listTmp -1) % (n-i);
             } else {
-                for(int j = tmp; j < 0; j++){
-                    next = (next - 1 + n) % n;
-                    while(flags[next]) next = (next - 1 + n) % n;
-                }
-                
+                next = (next + listTmp) % (n-i);
+                if(next < 0) next = next + (n-i);
             }
             
         }
+        sb.append(idxList.get(0));
 
-        sb.append(next+1);
-        
         System.out.print(sb);
     }
 }
