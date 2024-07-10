@@ -4,36 +4,39 @@ import java.io.*;
 
 class Main {
 
+    static int readPosInt() throws Exception {
+        int c, n = System.in.read() & 15;
+        while((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        return n;
+    }
+
     public static void main(String[] args) throws Exception {
         StringBuilder sb = new StringBuilder();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
-        int n = Integer.parseInt(br.readLine());
+        int n = readPosInt();
         
-        String qsStr = br.readLine();
-        String emStr = br.readLine();
-        String[] qsArr = qsStr.split(" ");
-        String[] emArr = emStr.split(" ");
+        int[] qArr = new int[n+100000];
+        int pointer = 0;
 
-        ArrayList<Integer> qArr = new ArrayList<>();
-        
+        boolean[] qsArr = new boolean[n];
         for(int i = 0; i < n; i++){
-            int qs = Integer.parseInt(qsArr[i]);
-            if(qs == 0) qArr.add(Integer.parseInt(emArr[i]));
+            qsArr[i] = readPosInt() == 0;
         }
 
-        n = Integer.parseInt(br.readLine());
+        for(int i = 0; i < n; i++){
+            if(qsArr[i]) qArr[pointer++] = readPosInt();
+            else readPosInt();
+        }
+
+        n = readPosInt();
         
-        int beforeSize = qArr.size();
-        int afterSize = beforeSize;
-        
-        String inputStr = br.readLine();
-        String[] input = inputStr.split(" ");
+        int beforeSize = pointer;
+        int afterSize = pointer;
         
         for(int i = 0; i < n; i++){
-            qArr.add(Integer.parseInt(input[i]));
-            if(beforeSize > 0) sb.append(qArr.get(--beforeSize)).append(" ");
-            else sb.append(qArr.get(afterSize++)).append(" ");
+            qArr[pointer++] = readPosInt();
+            if(beforeSize > 0) sb.append(qArr[--beforeSize]).append(" ");
+            else sb.append(qArr[afterSize++]).append(" ");
         }
         
         System.out.print(sb);
