@@ -20,12 +20,13 @@ class Main {
         
         int sum = 0;
         
-        int maxCounts = Integer.MIN_VALUE;
-        int idx = 0;
-        int[] counts = new int[8001];
-        
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
+        
+        int idx = 0;
+        int checker = 0;
+        int maxCounts = Integer.MIN_VALUE;
+        int[] counts = new int[8001];
         
         for(int i = 0; i < n; i++){
             arr[i] = readInt();
@@ -34,25 +35,28 @@ class Main {
             if(max < arr[i]) max = arr[i];
             if(min > arr[i]) min = arr[i];
         }
-        
         sb.append(Math.round((double)sum/n)).append("\n");
         
-        Arrays.sort(arr);
-        sb.append(arr[n/2]).append("\n");
+        sum = 0;
+        for(int i = min; i <= max; i++){
+            sum += counts[i+4000];
+            if(sum > (n>>1)) {
+                sb.append(i).append("\n");
+                break;
+            }
+        }
 
-        int count = 0;
         for(int i = min; i <= max; i++){
             if(maxCounts < counts[i+4000]){
-                count = 0;
+                checker = 0;
                 idx = i;
                 maxCounts = counts[i+4000];
-            } else if(maxCounts == counts[i+4000] && count < 1){
-                count++;
+            } else if(maxCounts == counts[i+4000] && checker == 0){
+                checker = 1;
                 idx = i;
             }
         }
         sb.append(idx).append("\n");
-        
         sb.append(max-min);
 
         System.out.print(sb);
