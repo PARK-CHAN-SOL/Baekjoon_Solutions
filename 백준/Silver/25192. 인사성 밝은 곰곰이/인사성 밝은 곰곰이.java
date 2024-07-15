@@ -15,7 +15,7 @@ class Main {
             String s = br.readLine();
             if(s.equals("ENTER")){
                 count += hs.size();
-                hs = new HashSet<String>();
+                hs.clear();
             }else{
                 hs.add(s); 
             }
