@@ -16,43 +16,42 @@ class Main {
     public static void main(String[] args) throws Exception {
         StringBuilder sb = new StringBuilder();
         int n = readInt();
-        int[] arr = new int[n];
+        int num;
         
         int sum = 0;
         
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
+
+        int checker1 = 0;
         
         int idx = 0;
-        int checker = 0;
+        int checker2 = 0;
         int maxCounts = Integer.MIN_VALUE;
         int[] counts = new int[8001];
         
         for(int i = 0; i < n; i++){
-            arr[i] = readInt();
-            counts[arr[i]+4000]++;
-            sum += arr[i];
-            if(max < arr[i]) max = arr[i];
-            if(min > arr[i]) min = arr[i];
+            num = readInt();
+            counts[num+4000]++;
+            sum += num;
+            if(max < num) max = num;
+            if(min > num) min = num;
         }
         sb.append(Math.round((double)sum/n)).append("\n");
         
         sum = 0;
         for(int i = min; i <= max; i++){
             sum += counts[i+4000];
-            if(sum > (n>>1)) {
+            if(checker1 == 0 && sum > (n>>1)) {
                 sb.append(i).append("\n");
-                break;
+                checker1 = 1;
             }
-        }
-
-        for(int i = min; i <= max; i++){
             if(maxCounts < counts[i+4000]){
-                checker = 0;
+                checker2 = 0;
                 idx = i;
                 maxCounts = counts[i+4000];
-            } else if(maxCounts == counts[i+4000] && checker == 0){
-                checker = 1;
+            } else if(maxCounts == counts[i+4000] && checker2 == 0){
+                checker2 = 1;
                 idx = i;
             }
         }
