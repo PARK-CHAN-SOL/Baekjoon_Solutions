@@ -16,6 +16,8 @@ class Main {
     }
     
     public static void main(String[] args) throws Exception {
-        System.out.print(factorial(readPosInt()));
+        int n = readPosInt();
+        long fac = factorial(n);
+        System.out.print(fac);
     }
 }
