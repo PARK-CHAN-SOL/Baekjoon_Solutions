@@ -80,15 +80,16 @@ class Main {
         int n = Integer.parseInt(nm[0]);
         int m = Integer.parseInt(nm[1]);
 
-        ArrayList<String> arr = new ArrayList<>();
+        String[] arr = new String[n];
+        int size = 0;
         
         for(int i = 0; i < n; i++){
+            arr[i] = "zzzzzzzzzz";
             s = br.readLine();
-            if(s.length() >= m) arr.add(s);
+            if(s.length() >= m) arr[size++] = s;
         }
-        
-        Collections.sort(arr);
-        int size = arr.size();
+
+        Arrays.sort(arr);
         
         counts = new int[size];
         idxs = new int[size];
@@ -97,10 +98,10 @@ class Main {
         int ptr = 0;
                 
         for(int i = 0; i < size-1; i++){
-            if(arr.get(i).equals(arr.get(i+1))) counts[ptr]++;
+            if(arr[i].equals(arr[i+1])) counts[ptr]++;
             else{
-                lengths[ptr] = arr.get(i).length();
-                lengths[ptr+1] = arr.get(i+1).length();
+                lengths[ptr] = arr[i].length();
+                lengths[ptr+1] = arr[i+1].length();
                 idxs[ptr] = i;
                 idxs[ptr+1] = i+1;
                 ptr++;
@@ -114,7 +115,7 @@ class Main {
         mergeSort(0, ptr);
 
         for(int i = 0; i < ptr+1; i++){
-            sb.append(arr.get(idxs[i])).append("\n");
+            sb.append(arr[idxs[i]]).append("\n");
         }
 
         System.out.print(sb);
