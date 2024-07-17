@@ -26,42 +26,18 @@ class Main {
             int tmpPtr = leftPtr;
     
             while(leftPtr <= midPtr && rightPtr <= endPtr){
-                if(arr[leftPtr] < arr[rightPtr]) {
-                    count++;
-                    if(count == k) {
-                        sb.append(arr[leftPtr]);
-                        return;
-                    }
-                    tmpArr[tmpPtr++] = arr[leftPtr++];
-                } else {
-                    count++;
-                    if(count == k) {
-                        sb.append(arr[rightPtr]);
-                        return;
-                    }
-                    tmpArr[tmpPtr++] = arr[rightPtr++];
-                }
+                if(arr[leftPtr] < arr[rightPtr]) tmpArr[tmpPtr++] = arr[leftPtr++];
+                else tmpArr[tmpPtr++] = arr[rightPtr++];
             }
-
-            while(leftPtr <= midPtr){
-                count++;
-                if(count == k) {
-                    sb.append(arr[leftPtr]);
-                    return;
-                }
-                tmpArr[tmpPtr++] = arr[leftPtr++];
-            }
-
-            while(rightPtr <= endPtr){
-                count++;
-                if(count == k) {
-                    sb.append(arr[rightPtr]);
-                    return;
-                }
-                tmpArr[tmpPtr++] = arr[rightPtr++];
-            }
+            while(leftPtr <= midPtr) tmpArr[tmpPtr++] = arr[leftPtr++];
+            while(rightPtr <= endPtr) tmpArr[tmpPtr++] = arr[rightPtr++];
 
             for(int i = startPtr; i <= endPtr; i++){
+                count++;
+                if(count == k) {
+                    sb.append(tmpArr[i]);
+                    return;
+                }
                 arr[i] = tmpArr[i];
             }
         }
