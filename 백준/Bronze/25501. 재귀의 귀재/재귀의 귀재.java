@@ -11,16 +11,14 @@ public class Main{
         else if(s.charAt(l) != s.charAt(r)) return 0;
         else return recursion(s, l+1, r-1);
     }
-    public static int isPalindrome(String s){
-        count = 0;
-        return recursion(s, 0, s.length()-1);
-    }
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
         for(int i = 0; i < n; i++){
-            sb.append(isPalindrome(br.readLine())).append(" ").append(count).append("\n");
+            count = 0;
+            String s = br.readLine();
+            sb.append(recursion(s, 0, s.length()-1)).append(" ").append(count).append("\n");
         }
         System.out.print(sb);
     }
