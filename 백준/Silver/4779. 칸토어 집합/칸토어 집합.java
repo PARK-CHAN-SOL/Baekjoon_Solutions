@@ -14,18 +14,19 @@ class Main {
         cantorSet.append("-");
         space.append(" ");
         
-        for(int i = 0; i < 12; i++){
-            String cantorSetTmp = cantorSet.toString();
+        String[] arr = new String[13];
+        
+        for(int i = 0; i < 13; i++){
+            arr[i] = cantorSet.toString();
             String spaceTmp = space.toString();
             
-            cantorSet.append(spaceTmp).append(cantorSetTmp);
+            cantorSet.append(spaceTmp).append(arr[i]);
             space.append(space).append(spaceTmp);
         }
 
         while(st.nextToken() != st.TT_EOF){
             int n = (int)st.nval;
-            String tmp = cantorSet.substring(0, (int)Math.pow(3,n));
-            sb.append(tmp).append("\n");
+            sb.append(arr[n]).append("\n");
         }
 
         System.out.print(sb);
