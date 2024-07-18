@@ -3,6 +3,7 @@ import java.lang.*;
 import java.io.*;
 
 class Main {
+
     
     static String cantorSet (int n) throws Exception {
         if(n == 0) {
@@ -23,11 +24,11 @@ class Main {
     public static void main(String[] args) throws Exception  {
         StreamTokenizer st = new StreamTokenizer(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+        String s = cantorSet(12);
         
         while(st.nextToken() != st.TT_EOF){
             int n = (int)st.nval;
-            String s = cantorSet(n);
-            sb.append(s).append("\n");
+            sb.append(s.substring(0, (int)Math.pow(3,n))).append("\n");
         }
 
         System.out.print(sb);
