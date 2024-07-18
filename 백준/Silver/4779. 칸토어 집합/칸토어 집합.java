@@ -28,7 +28,8 @@ class Main {
         
         while(st.nextToken() != st.TT_EOF){
             int n = (int)st.nval;
-            sb.append(s.substring(0, (int)Math.pow(3,n))).append("\n");
+            String tmp = s.substring(0, (int)Math.pow(3,n));
+            sb.append(tmp).append("\n");
         }
 
         System.out.print(sb);
