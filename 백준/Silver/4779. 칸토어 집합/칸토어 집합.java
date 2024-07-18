@@ -3,32 +3,28 @@ import java.lang.*;
 import java.io.*;
 
 class Main {
-
-    
-    static String cantorSet (int n) throws Exception {
-        if(n == 0) {
-            return("-");
-        } else {
-            StringBuilder sb = new StringBuilder();
-            String s = cantorSet(n-1);
-            sb.append(s);
-            int len = s.length();
-            for(int i = 0; i < len; i++){
-                sb.append(" ");
-            }
-            sb.append(s);
-            return sb.toString();
-        }
-    }
     
     public static void main(String[] args) throws Exception  {
         StreamTokenizer st = new StreamTokenizer(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        String s = cantorSet(12);
         
+        StringBuilder cantorSet = new StringBuilder();
+        StringBuilder space = new StringBuilder();
+        
+        cantorSet.append("-");
+        space.append(" ");
+        
+        for(int i = 0; i < 12; i++){
+            String cantorSetTmp = cantorSet.toString();
+            String spaceTmp = space.toString();
+            
+            cantorSet.append(spaceTmp).append(cantorSetTmp);
+            space.append(space).append(spaceTmp);
+        }
+
         while(st.nextToken() != st.TT_EOF){
             int n = (int)st.nval;
-            String tmp = s.substring(0, (int)Math.pow(3,n));
+            String tmp = cantorSet.substring(0, (int)Math.pow(3,n));
             sb.append(tmp).append("\n");
         }
 
