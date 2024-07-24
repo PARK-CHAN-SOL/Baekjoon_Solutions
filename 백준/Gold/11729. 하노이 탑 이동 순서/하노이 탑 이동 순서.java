@@ -14,40 +14,25 @@ class Main {
         StringBuilder sb = new StringBuilder();
         int n = readPosInt();
         
-        int[] nums = new int[n+1];
-        
         int count = (int)Math.pow(2,n)-1;
-
-        for(int i = 0; i < n+1; i++){
-            nums[i] = 1;
+        
+        String s = "1 3\n";
+        
+        for(int i = 1; i < n; i++){
+            String tmp = s.replace('3','4');
+            tmp = tmp.replace('2','3');
+            tmp = tmp.replace('4','2');
+            sb.append(tmp).append("1 3\n");
+            tmp = tmp.replace('3','4');
+            tmp = tmp.replace('2','3');
+            tmp = tmp.replace('1','2');
+            tmp = tmp.replace('4','1');
+            sb.append(tmp);
+            s = sb.toString();
+            sb.setLength(0);
         }
         
-        sb.append(count).append("\n");
-
-        int oddEven = n & 1;
-        
-        for(int i = 1; i <= count; i++){
-            int binary = i;
-            int pow = 1;
-            
-            while((binary & 1) != 1){
-                binary >>= 1;
-                pow++;
-            }
-            
-            if((pow & 1) == oddEven){
-                sb.append(nums[pow]--).append(" ");
-                if(nums[pow] == 0) nums[pow] = 3;
-                sb.append(nums[pow]).append("\n");
-                
-            } else {
-                sb.append(nums[pow]++).append(" ");
-                if(nums[pow] > 3) nums[pow] = 1;
-                sb.append(nums[pow]).append("\n");
-                
-            }
-        }
-
+        sb.append(count).append("\n").append(s);
         System.out.print(sb);
     }
 }
