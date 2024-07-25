@@ -1,38 +1,47 @@
-import java.util.*;
-import java.lang.*;
 import java.io.*;
 
 class Main {
     
     static int readPosInt() throws Exception {
         int c, n = System.in.read() & 15;
-        while((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
         return n;
     }
-    
+
     public static void main(String[] args) throws Exception {
-        StringBuilder sb = new StringBuilder();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = readPosInt();
-        
-        int count = (int)Math.pow(2,n)-1;
-        
-        String s = "1 3\n";
-        
-        for(int i = 1; i < n; i++){
-            s = s.replace('3','4');
-            s = s.replace('2','3');
-            s = s.replace('4','2');
-            sb.append(s).append("1 3\n");
-            s = s.replace('3','4');
-            s = s.replace('2','3');
-            s = s.replace('1','2');
-            s = s.replace('4','1');
-            sb.append(s);
-            s = sb.toString();
-            sb.setLength(0);
+        int count = (1 << n) - 1;
+
+        char[] seq = "1 3\n".toCharArray();
+        char[] tmp;
+
+        for (int i = 1; i < n; i++) {
+            tmp = new char[seq.length * 2 + 4];
+            int ptr = 0;
+
+            for (int j = 0; j < seq.length; j++) {
+                if (seq[j] == '3') tmp[ptr++] = '2';
+                else if (seq[j] == '2') tmp[ptr++] = '3';
+                else tmp[ptr++] = seq[j];
+            }
+            tmp[ptr++] = '1';
+            tmp[ptr++] = ' ';
+            tmp[ptr++] = '3';
+            tmp[ptr++] = '\n';
+
+            for (int j = 0; j < seq.length; j++) {
+                if (tmp[j] == '3') tmp[ptr++] = '1';
+                else if (tmp[j] == '2') tmp[ptr++] = '3';
+                else if (tmp[j] == '1') tmp[ptr++] = '2';
+                else tmp[ptr++] = seq[j];
+            }
+
+            seq = tmp;
         }
-        
-        sb.append(count).append("\n").append(s);
-        System.out.print(sb);
+
+        writer.write(count + "\n");
+        writer.write(seq);
+        writer.flush();
     }
 }
