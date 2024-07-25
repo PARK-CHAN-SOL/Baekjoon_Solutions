@@ -19,15 +19,15 @@ class Main {
         String s = "1 3\n";
         
         for(int i = 1; i < n; i++){
-            String tmp = s.replace('3','4');
-            tmp = tmp.replace('2','3');
-            tmp = tmp.replace('4','2');
-            sb.append(tmp).append("1 3\n");
-            tmp = tmp.replace('3','4');
-            tmp = tmp.replace('2','3');
-            tmp = tmp.replace('1','2');
-            tmp = tmp.replace('4','1');
-            sb.append(tmp);
+            s = s.replace('3','4');
+            s = s.replace('2','3');
+            s = s.replace('4','2');
+            sb.append(s).append("1 3\n");
+            s = s.replace('3','4');
+            s = s.replace('2','3');
+            s = s.replace('1','2');
+            s = s.replace('4','1');
+            sb.append(s);
             s = sb.toString();
             sb.setLength(0);
         }
