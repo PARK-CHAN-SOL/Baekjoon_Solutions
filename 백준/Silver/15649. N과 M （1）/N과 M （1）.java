@@ -5,8 +5,8 @@ import java.io.*;
 class Main {
 
     static int n, m;
-    static StringBuilder result = new StringBuilder();
-    static char[] arr;
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static int[] arr;
     static boolean[] flags;
     
     static int readPosInt() throws Exception {
@@ -15,14 +15,16 @@ class Main {
         return n;
     }
 
-    static void setSeq(int depth) {
+    static void setSeq(int depth) throws Exception {
         if(depth == 0) {
-            result.append(arr);
+            for(int i = 0; i < (m<<1); i++){
+                bw.write(arr[i]);
+            }
             return;
         }
-        for(int i = 0; i < n; i++){
+        for(int i = 1; i <= n; i++){
             if(!flags[i]){
-                arr[(m-depth)<<1] = (char)(i+49);
+                arr[(m-depth)<<1] = (i|48);
                 flags[i] = true;
                 setSeq(depth-1);
                 flags[i] = false;
@@ -34,14 +36,14 @@ class Main {
         n = readPosInt();
         m = readPosInt();
         
-        flags = new boolean[n];
-        arr = new char[m<<1];
-        Arrays.fill(arr, ' ');
-        arr[(m<<1) - 1] = '\n';
+        flags = new boolean[n+1];
+        arr = new int[m<<1];
+        Arrays.fill(arr, 32);
+        arr[(m<<1) - 1] = 10;
         
         setSeq(m);
         
-        System.out.print(result);
+        bw.flush();
 
     }
 }
