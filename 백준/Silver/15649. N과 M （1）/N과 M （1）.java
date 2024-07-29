@@ -6,6 +6,7 @@ class Main {
 
     static int n, m;
     static StringBuilder result = new StringBuilder();
+    static char[] arr;
     
     static int readPosInt() throws Exception {
         int c, n = System.in.read() & 15;
@@ -13,15 +14,14 @@ class Main {
         return n;
     }
 
-    static void setSeq(boolean[] flags, int depth,  char[] arr) {
+    static void setSeq(boolean[] flags, int depth) {
         for(int i = 0; i < n; i++){
             if(!flags[i]){
-                char[] arrTmp = arr.clone();
-                arrTmp[(m-depth)<<1] = (char)(i+49);
+                arr[(m-depth)<<1] = (char)(i+49);
                 boolean[] flagsTmp = flags.clone();
                 flagsTmp[i] = true;
-                if(depth == 1) result.append(arrTmp);
-                else setSeq(flagsTmp, depth-1, arrTmp);
+                if(depth == 1) result.append(arr);
+                else setSeq(flagsTmp, depth-1);
             }
         }
     }
@@ -31,11 +31,11 @@ class Main {
         m = readPosInt();
         
         boolean[] flags = new boolean[n];
-        char[] arr = new char[m<<1];
+        arr = new char[m<<1];
         Arrays.fill(arr, ' ');
         arr[(m<<1) - 1] = '\n';
         
-        setSeq(flags, m, arr);
+        setSeq(flags, m);
         
         System.out.print(result);
 
