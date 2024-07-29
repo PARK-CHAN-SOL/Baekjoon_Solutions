@@ -16,12 +16,15 @@ class Main {
     }
 
     static void setSeq(int depth) {
+        if(depth == 0) {
+            result.append(arr);
+            return;
+        }
         for(int i = 0; i < n; i++){
             if(!flags[i]){
                 arr[(m-depth)<<1] = (char)(i+49);
                 flags[i] = true;
-                if(depth == 1) result.append(arr);
-                else setSeq(depth-1);
+                setSeq(depth-1);
                 flags[i] = false;
             }
         }
