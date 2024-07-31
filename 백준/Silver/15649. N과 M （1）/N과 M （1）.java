@@ -4,7 +4,7 @@ import java.io.*;
 
 class Main {
 
-    static int n, m;
+    static int n, m, mm;
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static int[] arr;
     static boolean[] flags;
@@ -17,14 +17,14 @@ class Main {
 
     static void setSeq(int depth) throws Exception {
         if(depth == 0) {
-            for(int i = 0; i < (m<<1); i++){
+            for(int i = 0; i < mm; i++){
                 bw.write(arr[i]);
             }
             return;
         }
-        for(int i = 1; i <= n; i++){
+        for(int i = 49; i <= n; i++){
             if(!flags[i]){
-                arr[(m-depth)<<1] = (i|48);
+                arr[mm-(depth<<1)] = i;
                 flags[i] = true;
                 setSeq(depth-1);
                 flags[i] = false;
@@ -33,13 +33,14 @@ class Main {
     }
     
     public static void main(String[] args) throws Exception {
-        n = readPosInt();
+        n = readPosInt()|48;
         m = readPosInt();
+        mm = m<<1;
         
         flags = new boolean[n+1];
-        arr = new int[m<<1];
+        arr = new int[mm];
         Arrays.fill(arr, 32);
-        arr[(m<<1) - 1] = 10;
+        arr[(mm) - 1] = 10;
         
         setSeq(m);
         
