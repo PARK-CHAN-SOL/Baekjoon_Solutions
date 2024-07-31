@@ -16,7 +16,7 @@ class Main {
     }
 
     static void setSeq(int depth) throws Exception {
-        if(depth == 0) {
+        if(depth == mm) {
             for(int i = 0; i < mm; i++){
                 bw.write(arr[i]);
             }
@@ -24,9 +24,9 @@ class Main {
         }
         for(int i = 49; i <= n; i++){
             if(!flags[i]){
-                arr[mm-(depth<<1)] = i;
+                arr[depth] = i;
                 flags[i] = true;
-                setSeq(depth-1);
+                setSeq(depth+2);
                 flags[i] = false;
             }
         }
@@ -39,10 +39,14 @@ class Main {
         
         flags = new boolean[n+1];
         arr = new int[mm];
-        Arrays.fill(arr, 32);
-        arr[(mm) - 1] = 10;
+
+        for(int i = 1; i < mm; i += 2){
+            arr[i] = 32;
+        }
         
-        setSeq(m);
+        arr[mm - 1] = 10;
+        
+        setSeq(0);
         
         bw.flush();
 
