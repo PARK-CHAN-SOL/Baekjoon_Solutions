@@ -11,11 +11,13 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		int n = read();
 		if(n == 1) return;
+        int sqrtN = (int)Math.sqrt(n);
 		StringBuilder sb = new StringBuilder();
-		for (int i = 2; i <= Math.sqrt(n); i++) {
+		for (int i = 2; i <= sqrtN; i++) {
 			if(n % i == 0) {
 				sb.append(i).append("\n");
 				n /= i--;
+                sqrtN = (int)Math.sqrt(n);
 			}
 		}
 		sb.append(n);
