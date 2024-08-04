@@ -11,8 +11,7 @@ class Main {
     }
     
     public static void main(String[] args) throws IOException {
-        int n = read();
-        int dot = (1<<n) + 1;
+        int dot = (1<<read()) + 1;
         dot *= dot;
         System.out.println(dot);
     }
