@@ -12,11 +12,8 @@ class Main {
     
     public static void main(String[] args) throws IOException {
         int n = read();
-        int dot = 1;
-        for(int i = 0; i < n; i++){
-           dot *= 2;
-        }
-        dot = (dot + 1) * (dot + 1);
+        int dot = (1<<n) + 1;
+        dot *= dot;
         System.out.println(dot);
     }
 }
