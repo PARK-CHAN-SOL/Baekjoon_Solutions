@@ -3,6 +3,6 @@ public class Main{
         int a = System.in.read() & 15;
         System.in.read();
         int b = System.in.read() & 15;
-        System.out.print((double)a/b);
+        System.out.println((double)a/b);
     }
 }
