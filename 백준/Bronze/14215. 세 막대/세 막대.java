@@ -12,17 +12,17 @@ public class Main {
 		int a = read();
 		int b = read();
 		int c = read();
+        int max = a;
 		int sum = 0;
 		
-		if (a >= b + c) {
-			sum = b + b + c + c - 1;
-		} else if (b >= a + c) {
-			sum = a + a + c + c - 1;
-		} else if (c >= a + b) {
-			sum = a + a + b + b - 1;
-		} else {
-			sum = a + b + c;
-		}
+		if (max < b) max = b;
+		if (max < c) max = c;
+        int abc = a + b + c;
+        if(abc > 2*max){
+            sum = abc;
+        }else{
+            sum = 2 * (abc - max) - 1;
+        }
 		
 		System.out.println(sum);
 	}
