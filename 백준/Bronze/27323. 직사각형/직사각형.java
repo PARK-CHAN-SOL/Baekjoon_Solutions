@@ -8,6 +8,8 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws IOException {
-	    System.out.println(read()*read());	
+        int n = read();
+        int m = read();
+	    System.out.println(n*m);	
 	}
 }
