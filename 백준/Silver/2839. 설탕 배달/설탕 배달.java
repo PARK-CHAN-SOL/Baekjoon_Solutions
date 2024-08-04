@@ -10,9 +10,8 @@ class Main {
     }
     public static void main(String[] args) throws IOException{
         int n = read();
-        int remainings = n;
-        int five = remainings / 5;
-        remainings %=  5;
+        int five = n / 5;
+        int remainings = n % 5;
         int three = remainings / 3;
         
         while(five != -1){
