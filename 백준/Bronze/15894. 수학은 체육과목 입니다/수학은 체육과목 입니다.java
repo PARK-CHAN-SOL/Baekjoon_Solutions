@@ -1,6 +1,5 @@
 import java.io.IOException;
 
-//수학은 체육과목입니다
 public class Main {
 
 	static long read() throws IOException{
@@ -10,7 +9,7 @@ public class Main {
 	}
     
 	public static void main(String[] args) throws IOException {
-		System.out.println(read()*4);
+		System.out.println(read()<<2);
 	}
 
 }
