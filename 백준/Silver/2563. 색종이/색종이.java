@@ -14,15 +14,15 @@ class Main {
     public static void main(String[] args) throws IOException {        
         int x, y, n = read();
         int count = 0;
-        boolean[][] black = new boolean[100][100];
+        int[][] black = new int[100][100];
         for(int i = 0; i < n; i++){
             x = read();
             y = read();
             for(int j = 0; j < 10; j++){
                 for(int k = 0; k < 10; k++){
-                    if(!black[x+j][y+k]){
+                    if(black[x+j][y+k]!=1){
                         count++;
-                        black[x+j][y+k] = true;
+                        black[x+j][y+k]++;
                     }
                 }
             }
