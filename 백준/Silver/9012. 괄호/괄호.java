@@ -12,7 +12,6 @@ class Main {
     
     static boolean readPS(String ps) throws Exception {
         int count40 = 0, count41 = 0;
-        boolean flag = true;
         
         for(int i = 0; i < ps.length(); i++){
             if(ps.charAt(i) == '(') count40++;
