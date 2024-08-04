@@ -13,11 +13,12 @@ public class Main {
 		int n = read();
 		int sum = 0;
 		int min = 0;
+        boolean primeFlag;
 		StringBuilder sb = new StringBuilder();
 		
 		for (int i = m; i <= n; i++) {
 			if (i == 1) continue;
-			boolean primeFlag = false;
+			primeFlag = false;
 			for (int j = 2; j <= Math.sqrt(i); j++) {
 				if (i % j == 0) {
 					primeFlag = true;
