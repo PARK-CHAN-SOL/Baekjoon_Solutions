@@ -4,16 +4,16 @@ import java.io.*;
 
 class Main {
 
-    static StringBuffer read() throws IOException {
-        StringBuffer sb = new StringBuffer();
+    static StringBuilder read() throws IOException {
+        StringBuilder sb = new StringBuilder();
         int c;
         while((c = System.in.read()) > 32) sb.append((char)c);
         return sb;
     }
     
     public static void main(String[] args) throws IOException {        
-        StringBuffer sb = new StringBuffer();
-        StringBuffer sb2;
+        StringBuilder sb = new StringBuilder();
+        StringBuilder sb2;
         
         for(int i = 0; i < 5; i++){
             int k = i;
@@ -25,7 +25,7 @@ class Main {
             }
         }
         
-        sb2 = new StringBuffer();
+        sb2 = new StringBuilder();
         for(int i = 0; i < sb.length(); i++){
             if(sb.charAt(i) != 0)
             sb2.append(sb.charAt(i));
