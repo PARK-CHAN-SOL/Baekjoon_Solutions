@@ -7,7 +7,6 @@ class Main {
     static int n, m, mm;
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static int[] arr;
-    static boolean[] flags;
     
     static int readPosInt() throws Exception {
         int c, n = System.in.read() & 15;
@@ -23,12 +22,8 @@ class Main {
             return;
         }
         for(int i = rep; i <= n; i++){
-            if(!flags[i]){
                 arr[depth] = i;
-                flags[i] = true;
                 setSeq(i+1, depth+2);
-                flags[i] = false;
-            }
         }
     }
     
@@ -37,7 +32,6 @@ class Main {
         m = readPosInt();
         mm = m<<1;
         
-        flags = new boolean[n+1];
         arr = new int[mm];
 
         for(int i = 1; i < mm; i += 2){
