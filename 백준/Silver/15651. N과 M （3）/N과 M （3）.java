@@ -15,15 +15,22 @@ class Main {
     }
 
     static void setSeq(int depth) throws Exception {
-        if(depth == mm) {
-            for(int i = 0; i < mm; i++){
-                bw.write(arr[i]);
-            }
+        if(depth == mm-2) {
+            printArr();
             return;
         }
         for(int i = 49; i <= n; i++){
             arr[depth] = i;
             setSeq(depth+2);
+        }
+    }
+
+    static void printArr() throws Exception {
+        for(int j = 49; j <= n; j++){
+            arr[mm-2] = j;
+            for(int i = 0; i < mm; i++){
+                bw.write(arr[i]);
+            }
         }
     }
     
