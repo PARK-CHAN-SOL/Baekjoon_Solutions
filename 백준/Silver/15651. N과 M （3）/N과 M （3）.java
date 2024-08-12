@@ -6,7 +6,7 @@ class Main {
 
     static int n, m, mm;
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static int[] arr;
+    static char[] arr;
     
     static int readPosInt() throws Exception {
         int c, n = System.in.read() & 15;
@@ -19,18 +19,16 @@ class Main {
             printArr();
             return;
         }
-        for(int i = 49; i <= n; i++){
+        for(char i = '1'; i <= n; i++){
             arr[depth] = i;
             setSeq(depth+2);
         }
     }
 
     static void printArr() throws Exception {
-        for(int j = 49; j <= n; j++){
+        for(char j = '1'; j <= n; j++){
             arr[mm-2] = j;
-            for(int i = 0; i < mm; i++){
-                bw.write(arr[i]);
-            }
+            bw.write(arr);
         }
     }
     
@@ -39,13 +37,13 @@ class Main {
         m = readPosInt();
         mm = m<<1;
         
-        arr = new int[mm];
+        arr = new char[mm];
 
         for(int i = 1; i < mm; i += 2){
-            arr[i] = 32;
+            arr[i] = ' ';
         }
         
-        arr[mm - 1] = 10;
+        arr[mm - 1] = '\n';
         
         setSeq(0);
         
