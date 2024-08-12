@@ -15,7 +15,7 @@ class Main {
     }
 
     static void setSeq(int depth) throws Exception {
-        if(depth == mm-2) {
+        if(depth == mm) {
             printArr();
             return;
         }
@@ -27,7 +27,7 @@ class Main {
 
     static void printArr() throws Exception {
         for(char j = '1'; j <= n; j++){
-            arr[mm-2] = j;
+            arr[mm] = j;
             bw.write(arr);
         }
     }
@@ -44,6 +44,8 @@ class Main {
         }
         
         arr[mm - 1] = '\n';
+        
+        mm = mm - 2;
         
         setSeq(0);
         
