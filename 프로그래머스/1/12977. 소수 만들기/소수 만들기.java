@@ -1,36 +1,26 @@
 class Solution {
-    int sum = 0;
-    int count = 0;
-    public void dfs (int[] arr, int len, int index, boolean[] flags, int depth){
-        if(depth == 0) {
-            count++;
-            int sqrtSum = (int)Math.sqrt(sum);
-            for(int i = 2; i <= sqrtSum; i++){
-                if(sum % i == 0){
-                    count--;
-                    break;
+
+
+
+    public int solution(int[] nums) {
+        int ans = 0;
+
+        for(int i = 0; i < nums.length - 2; i ++){
+            for(int j = i + 1; j < nums.length - 1; j ++){
+                for(int k = j + 1; k < nums.length; k ++ ){
+                    if(isPrime(nums[i] + nums[j] + nums[k])){
+                        ans += 1;  
+                    } 
                 }
             }
-            return;
-        };
-        for(int i = index; i < len; i++){
-            if(!flags[i]){
-                flags[i] = true;
-                sum += arr[i];
-                dfs(arr, len, i, flags, depth-1);
-                sum -= arr[i];
-                flags[i] = false;
-            }
         }
+        return ans;
     }
-    public int solution(int[] nums) {
-        int answer = -1;
-
-        int len = nums.length;
-        
-        boolean[] flags = new boolean[len];
-        dfs(nums, len, 0, flags, 3);
-        
-        return count;
+    public Boolean isPrime(int num){
+        int cnt = 0;
+        for(int i = 1; i <= (int)Math.sqrt(num); i ++){
+            if(num % i == 0) cnt += 1; 
+        }
+        return cnt == 1;
     }
 }
