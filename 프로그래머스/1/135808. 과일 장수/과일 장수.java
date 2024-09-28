@@ -1,14 +1,14 @@
 import java.util.Arrays;
 class Solution {
     public int solution(int k, int m, int[] score) {
-        int answer = 0;
-        int len = score.length;
-        Arrays.sort(score);
-        
-        for(int i = len-m; i >= 0; i-=m){
-            answer += score[i]*m;
-            System.out.print(score[i]);
+        int[] sc2 = new int[k+1];
+        for(int i=0; i<score.length; i++) sc2[score[i]]++; 
+        int sum=0, mod=0;
+        for(int i=k; i>0; i--){         
+            sc2[i]=sc2[i] + mod;       
+            sum += sc2[i]/m * m * i;    
+            mod = sc2[i]%m;             
         }
-        return answer;
+        return sum;
     }
 }
