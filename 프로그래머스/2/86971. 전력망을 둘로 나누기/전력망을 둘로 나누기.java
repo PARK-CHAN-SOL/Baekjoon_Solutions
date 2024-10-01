@@ -1,32 +1,29 @@
-import java.util.*;
 class Solution {
-    public int solution(int n, int[][] wires) {
-        int len = wires.length;
-        int answer = (n & 1);
-        int min = n;
-        Queue<Integer> queue = new LinkedList<>();
-        
-        //하나를 끊고 아무거나 완전탐색, 총 개수에서 뺀다.
-        for(int i = 0; i < len; i++){
-            int count = 1;
-            boolean[] visit = new boolean[n];
-            visit[i] = true;
-            queue.offer(wires[i][0]);
-            while(!queue.isEmpty()){
-                int a = queue.peek();
-                for(int j = 0; j < len; j++){                
-                    if(!visit[j] && (wires[j][0] == a || wires[j][1] == a)){
-                        visit[j] = true;
-                        if(wires[j][0] == a) queue.offer(wires[j][1]);
-                        if(wires[j][1] == a) queue.offer(wires[j][0]);
-                        count++;
-                    }
-                }
-                queue.poll();
+    int N, min;
+    int[][] map;
+    int[] vst;
+    int dfs(int n){
+        vst[n] = 1;
+        int child = 1;
+        for(int i = 1; i <= N; i++) {
+            if(vst[i] == 0 && map[n][i] == 1) {
+                vst[i] = 1;
+                child += dfs(i);
             }
-            if(min > Math.abs(n - (count<<1))) min = Math.abs(n - (count<<1));
         }
-        
+        min = Math.min(min, Math.abs(child - (N - child)));
+        return child;
+    }
+    public int solution(int n, int[][] wires) {
+        N = n;
+        min = n;
+        map = new int[n+1][n+1];
+        vst = new int[n+1];
+        for(int[] wire : wires) {
+            int a = wire[0], b = wire[1];
+            map[a][b] = map[b][a] = 1;
+        }
+        dfs(1);
         return min;
     }
 }
