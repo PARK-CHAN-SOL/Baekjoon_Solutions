@@ -1,32 +1,35 @@
-import java.util.HashSet;
-import java.util.Arrays;
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
         int answer = 0;
+        int[] counts = new int[n+2];
         
-        //lost reserve 겹치면 지움
-        HashSet<Integer> set = new HashSet<>();
+        //lost -> -1, reserve -> +1
         int lostLen = lost.length;
         int reserveLen = reserve.length;
         
         for(int i = 0; i < lostLen; i++){
-            set.add(lost[i]);
+            counts[lost[i]]--;
         }
         
         for(int i = 0; i < reserveLen; i++){
-            if(set.contains(reserve[i])) {
-                set.remove(reserve[i]);
-                reserve[i] = -1;
-            }
+            counts[reserve[i]]++;
         }
         
         //왼쪽 끝 부터 왼쪽에 빌려줄 수 있으면 빌려주고, 왼쪽에 못 빌려주면 오른쪽에 빌려줌
-        Arrays.sort(reserve);
-        for(int i = 0; i < reserveLen; i++){
-            if(set.contains(reserve[i] - 1)) set.remove(reserve[i]-1);
-            else if(set.contains(reserve[i] + 1)) set.remove(reserve[i]+1);
+        for(int i = 1; i <= n; i++){
+            if(counts[i] == 1 && counts[i-1] == -1) {
+                counts[i]--;
+                counts[i-1]++;
+            } else if(counts[i] == 1 && counts[i+1] == -1) {
+                counts[i]--;
+                counts[i+1]++;
+            }
+        }
+        
+        for(int i = 1; i <= n; i++){
+            if(counts[i] >= 0) answer++;
         }
 
-        return n - set.size();
+        return answer;
     }
 }
