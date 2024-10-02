@@ -1,25 +1,19 @@
+import java.util.Stack;
 class Solution {
     public String solution(String number, int k) {
-        StringBuilder answer = new StringBuilder();
-        char[] arr = number.toCharArray();
-        int len = number.length();
-        
-        //0 부터 k 번째 까지 가장 큰 수(문자)를 찾는다
-        //가장 큰 수의 인덱스를 i라고 할 때 i 부터 k + 1번째 까지 가장 큰 수를 찾는다
-        //len번째까지 반복한다
-        int idx = 0;
-        while(k < len){
-            char max = '0';
-            for(int i = idx; i <= k; i++){
-                if(max < arr[i]) {
-                    max = arr[i];
-                    idx = i+1;
-                }
+        char[] result = new char[number.length() - k];
+        Stack<Character> stack = new Stack<>();
+
+        for (int i=0; i<number.length(); i++) {
+            char c = number.charAt(i);
+            while (!stack.isEmpty() && stack.peek() < c && k-- > 0) {
+                stack.pop();
             }
-            answer.append(max);
-            k++;
+            stack.push(c);
         }
-        
-        return answer.toString();
+        for (int i=0; i<result.length; i++) {
+            result[i] = stack.get(i);
+        }
+        return new String(result);
     }
 }
